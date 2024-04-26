@@ -1,0 +1,79 @@
+#cheeseWheel{
+    width:180px;
+    height:180px;
+    border-radius: 90px;
+    cursor: pointer;
+    font-size: 110px;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    align-content: center;
+}
+.buttonWrapper, .cheeseWrapper, .headerWrapper{
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    margin-left: auto;
+    margin-right: auto;
+    width:fit-content;
+    height: fit-content;
+    background-color: rgb(178, 255, 127);
+    /* overflow-y: scroll; */
+    /* overflow-wrap: break-word; */
+    min-width: 300px;
+}
+.buttonWrapper {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    height: fit-content;
+    background-color: rgb(178, 255, 127);
+    /* overflow-y: auto; Enable vertical scrolling */
+    /* overflow-x: hidden; Prevent horizontal scrolling */
+    min-width: 300px;
+}
+
+.shopItem{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    width: 250px;
+    height: 40px;
+    margin-bottom:20px;
+    background-color: #90cde3;
+    border-radius: 20px;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.shopItemButton{
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 15px;
+    box-shadow: black 0px 3px 0px 0px;
+}
+.shopItemTitle{
+    align-self: center;
+    padding: 10px;
+    width:200px;
+}
+#cheese, #shop{
+    align-self: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    align-items: center;
+    width:250px;
+    height:40px;
+    margin-bottom: 20px;
+}
+#shop{
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+}
