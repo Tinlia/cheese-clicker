@@ -2,6 +2,7 @@ var balance = 0
 var cps = 1
 var lastVisit = Date.now()
 var cheese = document.getElementById('cheese')
+var firstShopLoad = true;
 var prices = {
   "cow": 10,                // 10
   "farm": 100,              // 100
@@ -10,7 +11,7 @@ var prices = {
   "planet": 150000,         // 150 thousand
   "galaxy": 2000000,        // 2 million
   "universe": 50000000,     // 50 million
-  "multiverse": 1000000000, // 1 billion
+  "multiverse": 1000000000  // 1 billion
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -76,17 +77,6 @@ function addShopListeners(){
   document.getElementById('multiverse').addEventListener('click', function() { buy('multiverse'); });
 }
 
-function removeShopListeners(){
-  document.getElementById('cow').removeEventListener('click', buy('cow'));
-  document.getElementById('farm').removeEventListener('click', buy('farm'));
-  document.getElementById('factory').removeEventListener('click', buy('factory'));
-  document.getElementById('city').removeEventListener('click', buy('city'));
-  document.getElementById('planet').removeEventListener('click', buy('planet'));
-  document.getElementById('galaxy').removeEventListener('click', buy('galaxy'));
-  document.getElementById('universe').removeEventListener('click', buy('universe'));
-  document.getElementById('multiverse').removeEventListener('click', buy('multiverse'));
-}
-
 function buy(item){
   if (balance >= prices[item]){
     balance -= prices[item];
@@ -102,49 +92,57 @@ function loadShop(){
   console.log("Loading shop...");
   shopButton = document.getElementById('shop');
   if(shopButton.innerText == "Shop"){ // If not in the shop
+    saveDetails();
     shopButton.innerText = "Back";
-    document.getElementById('buttonAndShop').innerHTML = `
+    document.getElementById('cheeseWheel').style.visibility = "hidden";
+    document.getElementById('shopButtons').innerHTML = `
     <div class="shopItem">
         <p class="shopItemTitle">Cow</p>
-        <button class="shopItemButton" id="cow">🧀 10</button>
+        <button class="shopItemButton" id="cow">🧀 `+ prices["cow"].toFixed() + `</button>
       </div>
       <div class="shopItem">
         <p class="shopItemTitle">Farm</p>
-        <button class="shopItemButton" id="farm">🧀 100</button>
+        <button class="shopItemButton" id="farm">🧀 `+ prices["farm"].toFixed() + `</button>
       </div>
       <div class="shopItem">
         <p class="shopItemTitle">Factory</p>
-        <button class="shopItemButton"id="factory">🧀 1 K</button>
+        <button class="shopItemButton"id="factory">🧀 `+ prices["factory"].toFixed() + `</button>
       </div>
       <div class="shopItem">
         <p class="shopItemTitle">City</p>
-        <button class="shopItemButton"id="city">🧀 10 K</button>
+        <button class="shopItemButton"id="city">🧀 `+ prices["city"].toFixed() + `</button>
       </div>
       <div class="shopItem">
         <p class="shopItemTitle">Planet</p>
-        <button class="shopItemButton" id="planet">🧀 150 K</button>
+        <button class="shopItemButton" id="planet">🧀 `+ prices["planet"].toFixed() + `</button>
       </div>
       <div class="shopItem">
         <p class="shopItemTitle">Galaxy</p>
-        <button class="shopItemButton" id="galaxy">🧀 2 M</button>
+        <button class="shopItemButton" id="galaxy">🧀 `+ prices["galaxy"].toFixed() + `</button>
       </div>
       <div class="shopItem">
         <p class="shopItemTitle">Universe</p>
-        <button class="shopItemButton" id="universe">🧀 50 M</button>
+        <button class="shopItemButton" id="universe">🧀 `+ prices["universe"].toFixed() + `</button>
       </div>
       <div class="shopItem">
         <p class="shopItemTitle">Multiverse</p>
-        <button class="shopItemButton" id="multiverse">🧀 1 B</button>
+        <button class="shopItemButton" id="multiverse">🧀 `+ prices["multiverse"].toFixed() + `</button>
       </div>
     `;
     checkBuyables();
-    addShopListeners();
+    // if(firstShopLoad){ 
+      console.log("Adding listeners to shop items...");
+      addShopListeners();
+      firstShopLoad = false
+    // }
   } else {
-    removeShopListeners();
+    saveDetails();
     shopButton.innerText = "Shop";
-    document.getElementById('buttonAndShop').innerHTML = `
-    <button id="cheeseWheel" type="button">🌙</button>
-    `;
+    document.getElementById('cheeseWheel').style.visibility = "visible";
+    document.getElementById('shopButtons').innerHTML = " ";
+    // document.getElementById('buttonAndShop').innerHTML = `
+    // <button id="cheeseWheel" type="button">🌙</button>
+    // `;
   }
 }
 
